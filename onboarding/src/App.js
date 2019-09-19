@@ -14,7 +14,9 @@ function App() {
       email: formValues.email,
       first_name: formValues.name.split(" ")[0],
       last_name: formValues.name.split(" ")[1],
-      password: formValues.password
+      role: formValues.role,
+      password: formValues.password,
+      gender: formValues.gender
     };
     axios
       .post("https://reqres.in/api/users", usertoPost)
@@ -32,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <CustomForm onSubmit={submit} />
-      {postedUsers.map(user => <User person={user}/>)}
+      {postedUsers.map(user => <User key={user.id} person={user}/>)}
     </div>
   );
 }

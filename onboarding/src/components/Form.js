@@ -3,12 +3,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required('Name is required'),
-  email: yup.string().required("Email is required").email('Enter a valid email'),
+  name: yup.string().required("Name is required"),
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Enter a valid email"),
   password: yup.string().required("password is required"),
-  terms: yup
-    .boolean()
-    .required()
+  terms: yup.boolean().required(),
+  gender: yup.string().required()
 });
 
 
@@ -37,6 +39,10 @@ const validate = (formValues) => {
       errors.terms = "Please read and accept terms"
   }
 
+  if (!formValues.gender){
+      errors.gender = "Choose a gender"
+  }
+
   return errors;
 };
 
@@ -45,6 +51,7 @@ const initialForm = {
   email: "",
   role: "sl",
   password: "",
+  gender:"",
   terms: false
 };
 export default function CustomForm({onSubmit}) {
@@ -79,6 +86,13 @@ export default function CustomForm({onSubmit}) {
                   Password
               <Field name="password" type="text" placeholder="Password" />
               <ErrorMessage name="password" component="div" />
+              </label>
+            </div>
+            <div>
+              <label>
+                  Gender
+              <Field name="gender" type="text" placeholder="male/female" />
+              <ErrorMessage name="gender" component="div" />
               </label>
             </div>
             <div>
