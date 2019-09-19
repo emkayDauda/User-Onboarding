@@ -41,13 +41,13 @@ const initialForm = {
   password: "",
   terms: false
 };
-export default function CustomForm() {
+export default function CustomForm({onSubmit}) {
   return (
     <Formik
       validationSchema={validationSchema}
       validate={validate}
       initialValues={initialForm}
-      onSubmit={0}
+      onSubmit={onSubmit}
       render={props => {
         return (
           <Form>
