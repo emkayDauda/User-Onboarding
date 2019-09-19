@@ -96,14 +96,16 @@ export default function CustomForm({onSubmit}) {
               </label>
             </div>
             <div>
-                <label>
+            <label>
                     Role
-                <Field component="select" name="role">
-            <option value="student">Student</option>
-            <option value="tl">Team Lead</option>
-            <option value="sl">Section Lead</option>
-          </Field>
+                    <Field component="select" name="role">
+                    <option value="student">Student</option>
+                    <option value="tl">Team Lead</option>
+                    <option value="sl">Section Lead</option>
+                    </Field>
                 </label>
+            </div>
+            <div>
               <label>
                 <Field name="terms" type="checkbox"/>
                 <ErrorMessage name="terms" component="div" />
