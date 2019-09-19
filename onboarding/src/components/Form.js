@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
+import styled from 'styled-components'
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -13,9 +14,7 @@ const validationSchema = yup.object().shape({
   gender: yup.string().required()
 });
 
-
-
-const validate = (formValues) => {
+const validate = formValues => {
   const errors = {};
 
   if (!formValues.name) {
@@ -24,23 +23,22 @@ const validate = (formValues) => {
 
   if (!formValues.password) {
     errors.password = "Enter Password";
-  } 
-  else if (formValues.password.length < 6) {
-      errors.password = "Please use a more secure password"
+  } else if (formValues.password.length < 6) {
+    errors.password = "Please use a more secure password";
   }
 
   if (!formValues.email) {
     errors.email = "Email is required";
-  } else if (formValues.email.toLowerCase() === 'waffle@syrup.com'){
-      errors.email = 'Email Taken, nigga'
+  } else if (formValues.email.toLowerCase() === "waffle@syrup.com") {
+    errors.email = "Email Taken, nigga";
   }
 
-  if (!formValues.terms){
-      errors.terms = "Please read and accept terms"
+  if (!formValues.terms) {
+    errors.terms = "Please read and accept terms";
   }
 
-  if (!formValues.gender){
-      errors.gender = "Choose a gender"
+  if (!formValues.gender) {
+    errors.gender = "Choose a gender";
   }
 
   return errors;
@@ -51,10 +49,28 @@ const initialForm = {
   email: "",
   role: "sl",
   password: "",
-  gender:"",
+  gender: "",
   terms: false
 };
-export default function CustomForm({onSubmit}) {
+
+const StyledForm = styled(Form)`
+
+    label {
+        font-family: 'Tangerine', serif;
+        font-size: 25px;
+    }
+`
+
+const StyledField = styled(Field)`
+    margin: 5px;
+    background: none;
+    width: 300px;
+    border: 1px solid green;
+    border-radius: 3px;
+    padding: 3px;
+`
+
+export default function CustomForm({ onSubmit }) {
   return (
     <Formik
       validationSchema={validationSchema}
@@ -63,57 +79,56 @@ export default function CustomForm({onSubmit}) {
       onSubmit={onSubmit}
       render={props => {
         return (
-          <Form>
-               {
-              !props.dirty && <div>time to start typing!!</div>
-            }
+          <StyledForm>
+            {!props.dirty && <div>time to start typing!!</div>}
             <div>
               <label>
-                  Name
-                  <Field name="name" type="text" placeholder="Name" />
-                    <ErrorMessage name="name" component="div" />
+                Name
+                <StyledField name="name" type="text" placeholder="Name" />
+                <ErrorMessage name="name" component="div" />
               </label>
             </div>
             <div>
               <label>
-                  Email
-              <Field name="email" type="text" placeholder="Email" />
-              <ErrorMessage name="email" component="div" />
+                Email
+                <StyledField name="email" type="text" placeholder="Email" />
+                <ErrorMessage name="email" component="div" />
               </label>
             </div>
             <div>
               <label>
-                  Password
-              <Field name="password" type="text" placeholder="Password" />
-              <ErrorMessage name="password" component="div" />
+                Password
+                <StyledField name="password" type="text" placeholder="Password" />
+                <ErrorMessage name="password" component="div" />
               </label>
             </div>
             <div>
               <label>
-                  Gender
-              <Field name="gender" type="text" placeholder="male/female" />
-              <ErrorMessage name="gender" component="div" />
+                Gender
+                <StyledField name="gender" type="text" placeholder="male/female" />
+                <ErrorMessage name="gender" component="div" />
               </label>
             </div>
             <div>
-            <label>
-                    Role
-                    <Field component="select" name="role">
-                    <option value="student">Student</option>
-                    <option value="tl">Team Lead</option>
-                    <option value="sl">Section Lead</option>
-                    </Field>
-                </label>
+              <label>
+                Role
+                <StyledField component="select" name="role">
+                  <option value="student">Student</option>
+                  <option value="tl">Team Lead</option>
+                  <option value="sl">Section Lead</option>
+                </StyledField>
+              </label>
             </div>
             <div>
               <label>
-                <Field name="terms" type="checkbox"/>
+                <StyledField name="terms" type="checkbox" />
                 <ErrorMessage name="terms" component="div" />
+                <br/>
                 Accept terms.
               </label>
             </div>
             <button type="submit">Submit</button>
-          </Form>
+          </StyledForm>
         );
       }}
     />
