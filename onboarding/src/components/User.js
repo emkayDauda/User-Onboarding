@@ -46,7 +46,7 @@ export default function User({person}){
     return(
         <StyledPerson>
             <img src={src} alt=""/>
-            <Name>{`${person.first_name} ${person.last_name}`}</Name>
+            <Name>{`${person.first_name} ${person.last_name? person.last_name:""}`}</Name>
             <div>
                 <p>Email: {person.email}</p>
                 <p>Role: {person.role}</p>

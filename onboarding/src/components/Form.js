@@ -49,7 +49,7 @@ const initialForm = {
   email: "",
   role: "sl",
   password: "",
-  gender: "",
+  gender: "male",
   terms: false
 };
 
@@ -105,7 +105,10 @@ export default function CustomForm({ onSubmit }) {
             <div>
               <label>
                 Gender
-                <StyledField name="gender" type="text" placeholder="male/female" />
+                <StyledField component="select" name="role">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </StyledField>
                 <ErrorMessage name="gender" component="div" />
               </label>
             </div>
