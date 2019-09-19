@@ -114,8 +114,8 @@ export default function CustomForm({ onSubmit }) {
                 Role
                 <StyledField component="select" name="role">
                   <option value="student">Student</option>
-                  <option value="tl">Team Lead</option>
-                  <option value="sl">Section Lead</option>
+                  <option value="Team Lead">Team Lead</option>
+                  <option value="Section Lead">Section Lead</option>
                 </StyledField>
               </label>
             </div>
