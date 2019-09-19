@@ -43,6 +43,7 @@ const validate = (formValues) => {
 const initialForm = {
   name: "",
   email: "",
+  role: "sl",
   password: "",
   terms: false
 };
@@ -60,18 +61,35 @@ export default function CustomForm({onSubmit}) {
               !props.dirty && <div>time to start typing!!</div>
             }
             <div>
-              <Field name="name" type="text" placeholder="Name" />
-              <ErrorMessage name="name" component="div" />
+              <label>
+                  Name
+                  <Field name="name" type="text" placeholder="Name" />
+                    <ErrorMessage name="name" component="div" />
+              </label>
             </div>
             <div>
+              <label>
+                  Email
               <Field name="email" type="text" placeholder="Email" />
               <ErrorMessage name="email" component="div" />
+              </label>
             </div>
             <div>
+              <label>
+                  Password
               <Field name="password" type="text" placeholder="Password" />
               <ErrorMessage name="password" component="div" />
+              </label>
             </div>
             <div>
+                <label>
+                    Role
+                <Field component="select" name="role">
+            <option value="student">Student</option>
+            <option value="tl">Team Lead</option>
+            <option value="sl">Section Lead</option>
+          </Field>
+                </label>
               <label>
                 <Field name="terms" type="checkbox"/>
                 <ErrorMessage name="terms" component="div" />
