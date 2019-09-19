@@ -1,14 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Form from './components/Form'
+import CustomForm from './components/Form'
 
 function App() {
   return (
     <div className="App">
-      <Form>
-        
-      </Form>
+      <CustomForm>
+
+      </CustomForm>
     </div>
   );
 }
