@@ -3,6 +3,7 @@ import "./App.css";
 import CustomForm from "./components/Form";
 import axios from "axios";
 import uuid from 'uuid';
+import User from './components/User';
 
 function App() {
   const [postedUsers, setPostedUsers] = useState([]);
@@ -31,9 +32,7 @@ function App() {
   return (
     <div className="App">
       <CustomForm onSubmit={submit} />
-      {postedUsers.map(user => (
-        <h3 key={user.id}>{user.first_name}</h3>
-      ))}
+      {postedUsers.map(user => <User person={user}/>)}
     </div>
   );
 }
