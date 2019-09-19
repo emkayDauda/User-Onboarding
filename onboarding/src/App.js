@@ -7,8 +7,9 @@ import User from './components/User';
 
 function App() {
   const [postedUsers, setPostedUsers] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   function submit(formValues, actions) {
+    setLoading(true)
     const usertoPost = {
       id: uuid(),
       email: formValues.email,
@@ -21,6 +22,7 @@ function App() {
     axios
       .post("https://reqres.in/api/users", usertoPost)
       .then(response => {
+        setLoading(false)
         console.log(response.data);
         const newUsers = postedUsers.concat(response.data);
         setPostedUsers(newUsers);
@@ -28,13 +30,22 @@ function App() {
         actions.resetForm();
       })
       .catch(err => {
+        setLoading(false)
         console.log(err);
       });
   }
   return (
     <div className="App">
-      <CustomForm onSubmit={submit} />
-      {postedUsers.map(user => <User key={user.id} person={user}/>)}
+      {loading ? (
+        <h3>Loading</h3>
+      ) : (
+        <>
+          <CustomForm onSubmit={submit} />
+          {postedUsers.map(user => (
+            <User key={user.id} person={user} />
+          ))}
+        </>
+      )}
     </div>
   );
 }
