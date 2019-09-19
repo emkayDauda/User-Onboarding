@@ -22,10 +22,15 @@ const validate = (formValues) => {
 
   if (!formValues.password) {
     errors.password = "Enter Password";
+  } 
+  else if (formValues.password.length < 6) {
+      errors.password = "Please use a more secure password"
   }
 
   if (!formValues.email) {
     errors.email = "Email is required";
+  } else if (formValues.email.toLowerCase() === 'waffle@syrup.com'){
+      errors.email = 'Email Taken, nigga'
   }
 
   if (!formValues.terms){
